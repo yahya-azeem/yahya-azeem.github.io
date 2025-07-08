@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 07-01-2025 */
+/*! elementor - v3.30.0 - 07-07-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1953,7 +1953,7 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _button = _interopRequireDefault(__webpack_require__(/*! ../ui/molecules/button */ "../app/assets/js/ui/molecules/button.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Button = exports["default"] = /*#__PURE__*/function (_BaseButton) {
   function Button() {
     (0, _classCallCheck2.default)(this, Button);
@@ -2085,7 +2085,8 @@ function Header(props) {
   }), /*#__PURE__*/_react.default.createElement("h1", {
     className: "eps-app__title"
   }, props.title)), /*#__PURE__*/_react.default.createElement(_headerButtons.default, {
-    buttons: props.buttons
+    buttons: props.buttons,
+    onClose: props.onClose
   }));
 }
 Header.propTypes = {
@@ -2141,10 +2142,7 @@ function Page(props) {
     title: props.title,
     buttons: props.headerButtons,
     titleRedirectRoute: props.titleRedirectRoute,
-    onClose: function onClose() {
-      var _props$onClose;
-      return (_props$onClose = props.onClose) === null || _props$onClose === void 0 ? void 0 : _props$onClose.call(props);
-    }
+    onClose: props.onClose
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "eps-app__main"
   }, AppSidebar(), /*#__PURE__*/_react.default.createElement(_content.default, null, props.content)), AppFooter()));
@@ -4204,7 +4202,7 @@ __webpack_require__(/*! ./menu-item.scss */ "../app/assets/js/ui/menu/menu-item.
 var _button = _interopRequireDefault(__webpack_require__(/*! ../molecules/button */ "../app/assets/js/ui/molecules/button.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var SideMenuItem = exports["default"] = /*#__PURE__*/function (_BaseButton) {
   function SideMenuItem() {
     (0, _classCallCheck2.default)(this, SideMenuItem);
@@ -5023,21 +5021,35 @@ __webpack_require__(/*! ./popover.scss */ "../app/assets/js/ui/molecules/popover
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 function Popover(props) {
+  var getArrowPositionClass = function getArrowPositionClass() {
+    switch (props.arrowPosition) {
+      case 'start':
+        return 'eps-popover--arrow-start';
+      case 'end':
+        return 'eps-popover--arrow-end';
+      case 'none':
+        return 'eps-popover--arrow-none';
+      default:
+        return 'eps-popover--arrow-center';
+    }
+  };
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "eps-popover__background",
     onClick: props.closeFunction
   }), /*#__PURE__*/_react.default.createElement("ul", {
-    className: "eps-popover ".concat(props.className),
+    className: "eps-popover ".concat(getArrowPositionClass(), " ").concat(props.className),
     onClick: props.closeFunction
   }, props.children));
 }
 Popover.propTypes = {
   children: PropTypes.any.isRequired,
   className: PropTypes.string,
-  closeFunction: PropTypes.func
+  closeFunction: PropTypes.func,
+  arrowPosition: PropTypes.oneOf(['start', 'center', 'end', 'none'])
 };
 Popover.defaultProps = {
-  className: ''
+  className: '',
+  arrowPosition: 'center'
 };
 
 /***/ }),
@@ -8491,7 +8503,7 @@ try {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!****************************************!*\
